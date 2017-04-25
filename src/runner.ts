@@ -8,6 +8,11 @@ import { ISettings } from "./settings";
  */
 export interface IRunSettings {
     /**
+     * Whether to run the command in all repositories.
+     */
+    all?: boolean;
+
+    /**
      * Arguments for the command.
      */
     args: any;
@@ -53,12 +58,18 @@ export class Runner {
      * @returns Whether the requested command was run.
      */
     public async run(settings: IRunSettings): Promise<boolean> {
-        const command: ICommandClass<any, any> | undefined = await this.commandSearcher.search(settings.commandName);
-        if (!command) {
+        const commandClass: ICommandClass<any, any> | undefined = await this.commandSearcher.search(settings.commandName);
+        if (!commandClass) {
             return false;
         }
 
-        await new command(settings.args, settings.logger, settings.userSettings).execute();
+        if (settings.all) {
+            for await (const repository of Object.keys(settings.userSettings.allRepositories)) {
+                await new commandClass(settings.args, settings.logger, { ...settings.userSettings, repository }).execute();
+            }
+        } else {
+            await new commandClass(settings.args, settings.logger, settings.userSettings).execute();
+        }
         return true;
     }
 }
