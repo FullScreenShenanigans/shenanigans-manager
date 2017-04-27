@@ -1,3 +1,4 @@
+import { forAwaitOf } from "./forAwaitOf";
 import { ILogger } from "./logger";
 import { ISettings } from "./settings";
 
@@ -95,12 +96,9 @@ export abstract class Command<TArgs extends ICommandArgs, TResults> {
      */
     protected async subroutineInAll<TSubArgs extends ICommandArgs, TSubResults, TSubCommand extends ICommandClass<TSubArgs, TSubResults>>
         (commandClass: TSubCommand, args: TSubArgs): Promise<TSubResults[]> {
-        const results: TSubResults[] = [];
-
-        for await (const repository of Object.keys(this.settings.allRepositories)) {
-            results.push(await new commandClass(args, this.logger, { ...this.settings, repository }).execute());
-        }
-
-        return results;
+        return forAwaitOf(
+            Object.keys(this.settings.allRepositories),
+            repository => new commandClass(args, this.logger, { ...this.settings, repository })
+                .execute());
     }
 }

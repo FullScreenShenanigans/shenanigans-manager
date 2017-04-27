@@ -1,5 +1,6 @@
 import { ICommandClass } from "./command";
 import { ICommandSearcher } from "./commandSearcher";
+import { forAwaitOf } from "./forAwaitOf";
 import { ILogger } from "./logger";
 import { ISettings } from "./settings";
 
@@ -64,9 +65,10 @@ export class Runner {
         }
 
         if (settings.all) {
-            for await (const repository of Object.keys(settings.userSettings.allRepositories)) {
-                await new commandClass(settings.args, settings.logger, { ...settings.userSettings, repository }).execute();
-            }
+            await forAwaitOf(
+                Object.keys(settings.userSettings.allRepositories),
+                repository => new commandClass(settings.args, settings.logger, { ...settings.userSettings, repository })
+                    .execute());
         } else {
             await new commandClass(settings.args, settings.logger, settings.userSettings).execute();
         }
