@@ -1,6 +1,7 @@
 import { Command, ICommandArgs } from "../command";
 import { ensurePathExists } from "../utils";
 import { CloneRepository } from "./cloneRepository";
+import { CompleteBuild } from "./completeBuild";
 import { Gulp } from "./gulp";
 import { GulpSetup } from "./gulpSetup";
 import { NpmInstall } from "./npmInstall";
@@ -50,8 +51,6 @@ export class CompleteSetup extends Command<ICommandArgs, void> {
             } as ICommandArgs);
 
         await this.subroutineInAll(GulpSetup, this.args);
-
-        // Todo: will need to parse the tsconfig.json order out of all these suckers
-        // await this.subroutineInAll(Gulp, this.args);
+        await this.subroutine(CompleteBuild, this.args);
     }
 }
