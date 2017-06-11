@@ -15,7 +15,7 @@ export interface ICommandSearcher {
      * @type TCommandClass   Type of the command.
      * @returns The Command sub-class, if it can be found.
      */
-    search<TCommandClass extends ICommandClass<any, any>>(name: string): TCommandClass | undefined;
+    search<TCommandClass extends ICommandClass<any, any>>(name: string): Promise<TCommandClass | undefined>;
 }
 
 /**

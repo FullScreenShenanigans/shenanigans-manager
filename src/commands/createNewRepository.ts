@@ -52,6 +52,12 @@ export class CreateNewRepository extends Command<ICreateNewRepositoryArgs, void>
         await shell.execute("mkdir src");
     }
 
+    /**
+     * Copies a template file into a new respository.
+     *
+     * @param fileName   Name of the file.
+     * @returns A Promise for copying the file.
+     */
     private async copyTemplateFile(fileName: string): Promise<void> {
         const template: string = (await fs.readFile(path.join(__dirname, `../../setup/${fileName}`))).toString();
         const packageContents: string = mustache.render(template, this.args);

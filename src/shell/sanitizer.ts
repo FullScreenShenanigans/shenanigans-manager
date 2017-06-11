@@ -42,7 +42,9 @@ export class Sanitizer {
     }
 
     /**
-     * @param data Incoming data string.
+     * Determines whether a string has a prefix.
+     *
+     * @param data   Incoming data string.
      * @param prefix   Prefix to check for on the data string.
      * @returns Whether data starts with the prefix.
      */

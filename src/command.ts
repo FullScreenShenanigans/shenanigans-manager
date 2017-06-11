@@ -90,7 +90,7 @@ export abstract class Command<TArgs extends ICommandArgs, TResults> {
      * @param commandClass   Sub-command class to run.
      * @param args   Args for the sub-command.
      */
-    protected subroutine<
+    protected async subroutine<
         TSubArgs extends ICommandArgs,
         TSubResults,
         TSubCommand extends ICommandClass<TSubArgs, TSubResults>

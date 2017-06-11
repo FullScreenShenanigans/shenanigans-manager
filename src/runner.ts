@@ -58,7 +58,7 @@ export class Runner {
      * @returns Whether the requested command was run.
      */
     public async run(settings: IRunSettings): Promise<boolean> {
-        const commandClass: ICommandClass<any, any> | undefined = await this.commandSearcher.search(settings.commandName);
+        const commandClass = await this.commandSearcher.search(settings.commandName);
         if (!commandClass) {
             return false;
         }
