@@ -19,7 +19,7 @@ export interface IDoesRepositoryExistArgs extends ICommandArgs {
 export class DoesRepositoryExist extends Command<IDoesRepositoryExistArgs, void> {
     /**
      * Executes the command.
-     * 
+     *
      * @param args   Arguments for the command.
      * @returns A Promise for whether the repository exists.
      */

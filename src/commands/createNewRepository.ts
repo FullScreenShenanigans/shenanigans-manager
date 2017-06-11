@@ -26,7 +26,7 @@ export interface ICreateNewRepositoryArgs extends ICommandArgs {
 export class CreateNewRepository extends Command<ICreateNewRepositoryArgs, void> {
     /**
      * Executes the command.
-     * 
+     *
      * @returns A Promise for running the command.
      */
     public async execute(): Promise<any> {

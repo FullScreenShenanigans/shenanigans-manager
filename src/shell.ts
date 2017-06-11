@@ -45,7 +45,7 @@ export class Shell {
 
     /**
      * Initializes a new instance of the Shell class.
-     * 
+     *
      * @param logger   Logs on important events.
      * @param pathComponents   Path components for the initial directory.
      */
@@ -61,7 +61,7 @@ export class Shell {
 
     /**
      * Sets the current working directory.
-     * 
+     *
      * @param pathComponents   Path components for the directory.
      * @returns this
      */
@@ -78,7 +78,7 @@ export class Shell {
 
     /**
      * Runs a shell command.
-     * 
+     *
      * @param command   Command to execute.
      * @returns A Promise for the results of the command.
      */
@@ -91,8 +91,8 @@ export class Shell {
             const spawned: ChildProcess = exec(command, {
                 cwd: this.cwd
             });
-            let stderr: string = "";
-            let stdout: string = "";
+            let stderr = "";
+            let stdout = "";
 
             spawned.stderr.on("data", (data: string | Buffer) => {
                 data = this.sanitizer.sanitize(data);

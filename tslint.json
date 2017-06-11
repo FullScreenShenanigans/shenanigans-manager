@@ -1,3 +1,19 @@
 {
-    "extends": "tslint:all"
+    "extends": "tslint:all",
+    "rules": {
+        "array-type": [true, "array"],
+        "linebreak-style": [false],
+        "member-ordering": [false],
+        "newline-before-return": [false],
+        "no-any": false,
+        "no-console": [false],
+        "no-empty-interface": [false],
+        "no-magic-numbers": [false],
+        "no-unsafe-any": false,
+        "no-unused-variable": [false],
+        "prefer-function-over-method": false,
+        "strict-boolean-expressions": false,
+        "trailing-comma": [false],
+        "typedef": [false]
+    }
 }

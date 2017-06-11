@@ -25,7 +25,7 @@ export class Sanitizer {
 
     /**
      * Sanitizes data by trimming it and removing content if necessary.
-     * 
+     *
      * @param data   Incoming data object.
      * @returns Trimmed and sanitized equivalent of the data.
      */
