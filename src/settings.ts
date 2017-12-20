@@ -25,7 +25,6 @@ export const settings: ISettings = {
         "changelinr",
         "devicelayr",
         "eightbittr",
-        "flagswappr",
         "fpsanalyzr",
         "gamesrunnr",
         "gamestartr",

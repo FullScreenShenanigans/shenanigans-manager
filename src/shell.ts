@@ -60,10 +60,12 @@ export class Shell {
     /**
      * Sets the current working directory.
      *
-     * @param pathComponents   Path components for the directory.
+     * @param rawPathComponents   Path components for the directory.
      * @returns this
      */
-    public setCwd(...pathComponents: string[]): this {
+    public setCwd(...rawPathComponents: (string | undefined)[]): this {
+        const pathComponents: string[] = rawPathComponents.filter((pathComponent) => pathComponent !== undefined) as string[];
+
         const cwd: string = path.join(...pathComponents);
         this.cwd = cwd;
 

@@ -1,35 +1,24 @@
-import { Command, ICommandArgs } from "../command";
-import { Shell } from "../shell";
+import { ensureArgsExist, ICommandArgs, IRepositoryCommandArgs } from "../command";
+import { IRuntime } from "../runtime";
+import { ICommandOutput, Shell } from "../shell";
 
 /**
  * Arguments for an Exec command.
  */
-export interface IExecArgs extends ICommandArgs {
+export interface IExecArgs extends IRepositoryCommandArgs {
     /**
      * Command to execute.
      */
     exec: string;
-
-    /**
-     * Name of the repository.
-     */
-    repository: string;
 }
 
 /**
  * Executes a command in a repository.
  */
-export class Exec extends Command<IExecArgs, void> {
-    /**
-     * Executes the command.
-     *
-     * @returns A Promise for running the command.
-     */
-    public async execute(): Promise<void> {
-        this.ensureArgsExist("exec", "repository");
+export const Exec = async (runtime: IRuntime, args: IExecArgs): Promise<ICommandOutput> => {
+    ensureArgsExist(args, "exec", "repository");
 
-        await new Shell(this.logger)
-            .setCwd(this.args.directory, this.args.repository)
-            .execute(this.args.exec);
-    }
-}
+    return new Shell(runtime.logger)
+        .setCwd(args.directory, args.repository)
+        .execute(args.exec);
+};
