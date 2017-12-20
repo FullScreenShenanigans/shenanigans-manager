@@ -2,7 +2,7 @@ import * as mustache from "mustache";
 import * as fs from "mz/fs";
 import * as path from "path";
 
-import { defaultPathArgs, ICommandArgs, IRepositoryCommandArgs } from "../command";
+import { defaultPathArgs, IRepositoryCommandArgs } from "../command";
 import { IRuntime } from "../runtime";
 import { globAsync, parseFileJson } from "../utils";
 import { EnsureRepositoryExists } from "./ensureRepositoryExists";

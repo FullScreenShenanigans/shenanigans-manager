@@ -1,7 +1,6 @@
-import { ensureArgsExist, ICommandArgs, IRepositoryCommandArgs } from "../command";
+import { ensureArgsExist } from "../command";
 import { IRuntime } from "../runtime";
 import { Shell } from "../shell";
-import { EnsureRepositoryExists } from "./ensureRepositoryExists";
 
 /**
  * Arguments for an OpenOnGithub command.

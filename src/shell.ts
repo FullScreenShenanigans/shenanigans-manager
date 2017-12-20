@@ -2,7 +2,6 @@ import { spawn } from "child_process";
 import * as path from "path";
 
 import { ILogger } from "./logger";
-import { Sanitizer } from "./shell/sanitizer";
 
 const commandAliases: { [i: string]: string | undefined } = {
     npm: process.platform === "win32"
@@ -14,11 +13,6 @@ const commandAliases: { [i: string]: string | undefined } = {
  * Runs shell commands.
  */
 export class Shell {
-    /**
-     * Sanitizes shell logs to remove unnecessary strings.
-     */
-    private readonly sanitizer: Sanitizer = new Sanitizer();
-
     /**
      * Logs on important events.
      */

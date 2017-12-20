@@ -1,4 +1,3 @@
-import chalk from "chalk";
 
 import { ILogger } from "./logger";
 import { ISettings } from "./settings";

@@ -46,6 +46,7 @@
     "src": "npm run src:tsc && npm run src:tslint",
     "src:tsc": "tsc -p .",
     "src:tslint": "tslint -c tslint.json -p tsconfig.json -t stylish",
+    "src:tslint-fix": "npm run src:tslint -- --fix",
     "watch": "tsc -p . -w"
   }
 }

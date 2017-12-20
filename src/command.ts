@@ -1,8 +1,6 @@
 import chalk from "chalk";
 
-import { ILogger } from "./logger";
 import { IRuntime } from "./runtime";
-import { ISettings } from "./settings";
 
 /**
  * Common arguments for all commands.
