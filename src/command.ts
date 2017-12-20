@@ -72,7 +72,7 @@ export const ensureArgsExist = <TArgs extends {}>
 
         throw new Error(
             chalk.red([
-                `Missing arg${missing.length === 1 ? "" : "s"}`,
+                `Missing arg${missing.length === 1 ? "" : "s"}:`,
                 chalk.bold(missing.join(" ")),
             ].join(" ")));
     };

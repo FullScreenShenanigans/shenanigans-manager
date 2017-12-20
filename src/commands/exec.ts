@@ -1,6 +1,6 @@
 import { ensureArgsExist, ICommandArgs, IRepositoryCommandArgs } from "../command";
 import { IRuntime } from "../runtime";
-import { ICommandOutput, Shell } from "../shell";
+import { Shell } from "../shell";
 
 /**
  * Arguments for an Exec command.
@@ -15,7 +15,7 @@ export interface IExecArgs extends IRepositoryCommandArgs {
 /**
  * Executes a command in a repository.
  */
-export const Exec = async (runtime: IRuntime, args: IExecArgs): Promise<ICommandOutput> => {
+export const Exec = async (runtime: IRuntime, args: IExecArgs): Promise<number> => {
     ensureArgsExist(args, "exec", "repository");
 
     return new Shell(runtime.logger)

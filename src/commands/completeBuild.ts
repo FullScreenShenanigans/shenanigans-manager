@@ -4,7 +4,6 @@ import * as path from "path";
 
 import { ICommandArgs } from "../command";
 import { IRuntime } from "../runtime";
-import { ICommandOutput } from "../shell";
 import { Exec, IExecArgs } from "./exec";
 
 /**
@@ -31,10 +30,11 @@ export const CompleteBuild = async (runtime: IRuntime, args: ICommandArgs) => {
         paths: resolvePackagePaths(args.directory, runtime.settings.allRepositories),
     });
 
-    runtime.logger.log(
+    runtime.logger.log([
         chalk.grey.italic("Building in order:"),
         chalk.green(order.join(" ")),
-        "\n");
+        "\n",
+    ].join(" "));
 
     for (const packageToBuild of order) {
         const subArgs: IExecArgs = {
@@ -43,10 +43,11 @@ export const CompleteBuild = async (runtime: IRuntime, args: ICommandArgs) => {
             repository: packageToBuild,
         };
 
-        const output = await Exec(runtime, subArgs);
+        const code = await Exec(runtime, subArgs);
 
-        if (output.code !== 0 && output.stdout !== "") {
-            runtime.logger.log(output.stdout);
+        if (code !== 0) {
+            runtime.logger.log(`\n${chalk.red("Aborting build.")}`);
+            return;
         }
     }
 };

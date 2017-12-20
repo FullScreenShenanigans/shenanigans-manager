@@ -12,9 +12,10 @@ const nameTransformer = new NameTransformer();
  * Displays help info.
  */
 export const Help = async (runtime: IRuntime, args: ICommandArgs) => {
-    runtime.logger.log(
+    runtime.logger.log([
         chalk.bold.cyan("shenanigans-manager"),
-        "manages locally installed FullScreenShenanigans modules for development.");
+        "manages locally installed FullScreenShenanigans modules for development.",
+    ].join(" "));
 
     runtime.logger.log("Available commands:");
 
@@ -29,5 +30,9 @@ export const Help = async (runtime: IRuntime, args: ICommandArgs) => {
         runtime.logger.log(`    ${nameTransformer.toDashedCase(file)}`);
     }
 
-    runtime.logger.log("Run with", chalk.bold("--all"), "to execute a command in all repositories.");
+    runtime.logger.log([
+        "Run with",
+        chalk.bold("--all"),
+        "to execute a command in all repositories.",
+    ].join(" "));
 };

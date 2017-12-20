@@ -9,6 +9,7 @@
         "no-any": false,
         "no-console": false,
         "no-magic-numbers": [true, -1, 0, 1, 2, 3, 4],
+        "no-parameter-properties": false,
         "no-parameter-reassignment": false,
         "no-redundant-jsdoc": false,
         "no-submodule-imports": false,

@@ -31,7 +31,7 @@ const main = async (): Promise<void> => {
             all: argv.all,
             args: args as ICommandArgs,
             commandName,
-            logger: new ConsoleLogger(),
+            logger: new ConsoleLogger(process.stderr, process.stdout),
             userSettings: settings,
         });
 

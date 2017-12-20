@@ -34,7 +34,7 @@ const redirectTestDependencies = (dependencies: string[]): void => {
 
         requirejs.config({
             paths: {
-                [dependency]: `../node_modules/${dependency}/src`,
+                [dependency]: `../node_modules/${dependency}`,
             },
         });
     }
