@@ -20,7 +20,7 @@ export class Link extends Command<ILinkArgs, void> {
      *
      * @returns A Promise for running the command.
      */
-    public async execute(): Promise<any> {
+    public async execute(): Promise<void> {
         this.ensureArgsExist("directory", "repository");
 
         await new Shell(this.logger)

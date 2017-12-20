@@ -25,6 +25,7 @@ export const settings: ISettings = {
         "changelinr",
         "devicelayr",
         "eightbittr",
+        "flagswappr",
         "fpsanalyzr",
         "gamesrunnr",
         "gamestartr",
@@ -49,7 +50,7 @@ export const settings: ISettings = {
         "userwrappr",
         "worldseedr",
         // Games
-        "fullscreenpokemon"
+        "fullscreenpokemon",
     ],
-    organization: "FullScreenShenanigans"
+    organization: "FullScreenShenanigans",
 };

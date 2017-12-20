@@ -1,4 +1,4 @@
-import * as chalk from "chalk";
+import chalk from "chalk";
 
 import { ILogger } from "./logger";
 import { ISettings } from "./settings";
@@ -19,7 +19,7 @@ export interface ICommandArgs {
  * @param TArgs   Type of the command's arguments.
  * @param TResults   Type of the results.
  */
-export interface ICommandClass<TArgs extends ICommandArgs, TResult> {
+export interface ICommandClass<TArgs extends ICommandArgs = ICommandArgs, TResult = void> {
     /**
      * Initializes a new instance of a Command subclass.
      *
@@ -27,7 +27,7 @@ export interface ICommandClass<TArgs extends ICommandArgs, TResult> {
      * @param logger   Logs on important events.
      * @param settings   User settings for the manager.
      */
-    new(args: TArgs, logger: ILogger, settings: ISettings): Command<TArgs, TResult>;
+    new(args: Partial<TArgs>, logger: ILogger, settings: ISettings): Command<TArgs, TResult>;
 }
 
 /**
@@ -58,9 +58,10 @@ export abstract class Command<TArgs extends ICommandArgs, TResults> {
      * @param args   Arguments for the command.
      * @param logger   Logs on important events.
      * @param settings   User settings for the manager.
+     * @remarks Args are taken in as a partial. Execution is assumed to verify existence.
      */
-    public constructor(args: TArgs, logger: ILogger, settings: ISettings) {
-        this.args = args;
+    public constructor(args: Partial<TArgs>, logger: ILogger, settings: ISettings) {
+        this.args = args as TArgs;
         this.logger = logger;
         this.settings = settings;
     }
@@ -75,18 +76,12 @@ export abstract class Command<TArgs extends ICommandArgs, TResults> {
     /**
      * Creates and runs a sub-command.
      *
-     * @type TSubArgs   Type of the sub-command's arguments.
-     * @type TSubResults   Type the sub-command returns.
-     * @type TSubCommand   Type of the sub-command.
+     * @template TSubResults   Type the sub-command returns.
      * @param commandClass   Sub-command class to run.
      * @param args   Args for the sub-command.
      */
-    protected async subroutine<
-        TSubArgs extends ICommandArgs,
-        TSubResults,
-        TSubCommand extends ICommandClass<TSubArgs, TSubResults>
-    >(
-        commandClass: TSubCommand, args: TSubArgs
+    protected async subroutine<TSubResults>(
+        commandClass: ICommandClass<ICommandArgs, TSubResults>, args: ICommandArgs,
     ): Promise<TSubResults> {
         return new commandClass(args, this.logger, this.settings).execute();
     }
@@ -94,26 +89,19 @@ export abstract class Command<TArgs extends ICommandArgs, TResults> {
     /**
      * Creates and runs a sub-command in all repositories.
      *
-     * @type TSubArgs   Type of the sub-command's arguments.
-     * @type TSubResults   Type the sub-command returns.
-     * @type TSubCommand   Type of the sub-command.
+     * @template TSubResults   Type the sub-command returns.
      * @param commandClass   Sub-command class to run.
      * @param args   Args for the sub-command.
      */
-    protected async subroutineInAll<
-        TSubArgs extends ICommandArgs,
-        TSubResults,
-        TSubCommand extends ICommandClass<TSubArgs, TSubResults>
-    >(
-        commandClass: TSubCommand,
-        args: TSubArgs
+    protected async subroutineInAll<TSubResults>(
+        commandClass: ICommandClass<ICommandArgs, TSubResults>, args: ICommandArgs,
     ): Promise<TSubResults[]> {
         const results: TSubResults[] = [];
 
         for (const repository of this.settings.allRepositories) {
-            const commandArgs: TSubArgs = {
-                ...(args as any),
-                repository
+            const commandArgs: ICommandArgs & { repository: string } = {
+                ...args,
+                repository,
             };
             const command = new commandClass(commandArgs, this.logger, this.settings);
 
@@ -137,9 +125,20 @@ export abstract class Command<TArgs extends ICommandArgs, TResults> {
         throw new Error(
             chalk.red([
                 `Missing arg${missing.length === 1 ? "" : "s"}`,
-                " in ",
-                `${this.constructor.name}:`,
-                chalk.bold(missing.join(" "))
+                chalk.bold(missing.join(" ")),
             ].join(" ")));
+    }
+
+    /**
+     * Defaults a set of arguments to ".".
+     *
+     * @param names   Argument names to default.
+     */
+    protected defaultPathArgs(...names: (keyof TArgs)[]): void {
+        for (const name of names) {
+            if (!(name in this.args)) {
+                this.args[name] = ".";
+            }
+        }
     }
 }

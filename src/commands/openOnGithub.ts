@@ -26,7 +26,7 @@ export class OpenOnGithub extends Command<IOpenOnGithubArgs, void> {
      *
      * @returns A Promise for running the command.
      */
-    public async execute(): Promise<any> {
+    public async execute(): Promise<void> {
         this.ensureArgsExist("repository");
 
         await this.subroutine(EnsureRepositoryExists, this.args);
@@ -37,7 +37,7 @@ export class OpenOnGithub extends Command<IOpenOnGithubArgs, void> {
             this.args.repository,
             this.args.url === undefined
                 ? ""
-                : this.args.url
+                : this.args.url,
         ].join("/");
         const shell = new Shell(this.logger, this.args.directory, this.args.repository);
 

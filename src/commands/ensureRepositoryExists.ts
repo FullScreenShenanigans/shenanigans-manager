@@ -21,7 +21,7 @@ export class EnsureRepositoryExists extends Command<IEnsureRepositoryExistsArgs,
      *
      * @returns A Promise for running the command.
      */
-    public async execute(): Promise<any> {
+    public async execute(): Promise<void> {
         if (!(await this.subroutine(DoesRepositoryExist, this.args))) {
             await this.subroutine(CloneRepository, this.args);
         }

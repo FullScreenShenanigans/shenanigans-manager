@@ -17,7 +17,7 @@ const commandName: string = argv._[0] || "help";
 const args = {
     commandName,
     directory: process.cwd(),
-    ...argv
+    ...argv,
 };
 
 const main = async (): Promise<void> => {
@@ -32,7 +32,7 @@ const main = async (): Promise<void> => {
             args: args as ICommandArgs,
             commandName,
             logger: new ConsoleLogger(),
-            userSettings: settings
+            userSettings: settings,
         });
 
         if (!result) {
@@ -40,7 +40,8 @@ const main = async (): Promise<void> => {
             return;
         }
     } catch (error) {
-        console.error(error.stack || error.message);
+        console.error(error);
+        return;
     }
 
     if (commandName !== "help") {

@@ -16,16 +16,16 @@ export interface IDoesRepositoryExistArgs extends ICommandArgs {
 /**
  * Checks if a repository exists locally.
  */
-export class DoesRepositoryExist extends Command<IDoesRepositoryExistArgs, void> {
+export class DoesRepositoryExist extends Command<IDoesRepositoryExistArgs, boolean> {
     /**
      * Executes the command.
      *
      * @param args   Arguments for the command.
      * @returns A Promise for whether the repository exists.
      */
-    public async execute(): Promise<any> {
+    public async execute(): Promise<boolean> {
         this.ensureArgsExist("directory", "repository");
 
-        return await fs.exists(path.join(this.args.directory, this.args.repository));
+        return fs.exists(path.join(this.args.directory, this.args.repository));
     }
 }

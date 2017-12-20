@@ -34,7 +34,7 @@ export class TslintFix extends Command<ITslintFixArgs, void> {
      *
      * @returns A Promise for running the command.
      */
-    public async execute(): Promise<any> {
+    public async execute(): Promise<void> {
         this.ensureArgsExist("directory", "repository");
 
         await this.subroutine(EnsureRepositoryExists, this.args);
@@ -43,7 +43,7 @@ export class TslintFix extends Command<ITslintFixArgs, void> {
 
         await Promise.all([
             shell.execute(generateLintCommand("", this.args["disable-type-check"])),
-            shell.execute(generateLintCommand("test/", this.args["disable-type-check"]))
+            shell.execute(generateLintCommand("test/", this.args["disable-type-check"])),
         ]);
     }
 }

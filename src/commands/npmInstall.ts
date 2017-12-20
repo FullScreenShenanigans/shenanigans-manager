@@ -13,7 +13,7 @@ export interface INpmInstallArgs extends ICommandArgs {
 }
 
 /**
- * Runs gulp in a repository.
+ * Runs npm install in a repository.
  */
 export class NpmInstall extends Command<INpmInstallArgs, void> {
     /**
@@ -21,7 +21,7 @@ export class NpmInstall extends Command<INpmInstallArgs, void> {
      *
      * @returns A Promise for running the command.
      */
-    public async execute(): Promise<any> {
+    public async execute(): Promise<void> {
         this.ensureArgsExist("directory", "repository");
 
         await this.subroutine(EnsureRepositoryExists, this.args);

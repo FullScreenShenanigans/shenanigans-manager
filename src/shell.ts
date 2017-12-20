@@ -41,7 +41,7 @@ export class Shell {
     /**
      * Current working directory.
      */
-    private cwd: string;
+    private cwd = ".";
 
     /**
      * Initializes a new instance of the Shell class.
@@ -52,9 +52,7 @@ export class Shell {
     public constructor(logger: ILogger, ...pathComponents: string[]) {
         this.logger = logger;
 
-        if (pathComponents.length === 0) {
-            this.cwd = ".";
-        } else {
+        if (pathComponents.length !== 0) {
             this.setCwd(...pathComponents);
         }
     }
@@ -89,7 +87,7 @@ export class Shell {
 
         return new Promise<ICommandOutput>((resolve): void => {
             const spawned: ChildProcess = exec(command, {
-                cwd: this.cwd
+                cwd: this.cwd,
             });
             let stderr = "";
             let stdout = "";

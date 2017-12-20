@@ -1,10 +1,6 @@
-import * as chalk from "chalk";
+import chalk from "chalk";
 
-import {
-    IExecuteBeginInfo, IExecuteEndInfo, IExecuteOutInfo,
-    ILogger,
-    IOnSetCwdInfo
-} from "../logger";
+import { IExecuteBeginInfo, IExecuteEndInfo, IExecuteOutInfo, ILogger, IOnSetCwdInfo } from "../logger";
 
 /**
  * Logs on important events.

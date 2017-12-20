@@ -11,7 +11,7 @@ export interface IExecuteInfo {
 /**
  * Log information about command execution beginning.
  */
-export interface IExecuteBeginInfo extends IExecuteInfo { }
+export type IExecuteBeginInfo = IExecuteInfo;
 
 /**
  * Log information about command execution ending.

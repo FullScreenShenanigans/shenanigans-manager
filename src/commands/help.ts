@@ -1,4 +1,4 @@
-import * as chalk from "chalk";
+import chalk from "chalk";
 import * as fs from "mz/fs";
 import * as path from "path";
 
@@ -19,7 +19,7 @@ export class Help extends Command<ICommandArgs, void> {
      *
      * @returns A Promise for ensuring the repository exists.
      */
-    public async execute(): Promise<any> {
+    public async execute(): Promise<void> {
         this.logger.log(
             chalk.bold.cyan("shenanigans-manager"),
             "manages locally installed FullScreenShenanigans modules for development.");

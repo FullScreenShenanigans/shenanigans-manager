@@ -21,13 +21,13 @@ export class LinkToDependencies extends Command<ILinkToDependenciesArgs, void> {
      *
      * @returns A Promise for running the command.
      */
-    public async execute(): Promise<any> {
+    public async execute(): Promise<void> {
         this.ensureArgsExist("directory", "repository");
 
         const shell: Shell = new Shell(this.logger)
             .setCwd(this.args.directory, this.args.repository);
 
-        await shell.execute("npm link gulp-shenanigans");
+        await shell.execute("npm link shenanigans-manager");
 
         for (const dependency of Object.keys(
             await getDependencies([this.args.directory, this.args.repository], this.logger))

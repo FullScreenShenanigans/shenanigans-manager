@@ -15,7 +15,7 @@ export interface ICommandSearcher {
      * @type TCommandClass   Type of the command.
      * @returns The Command sub-class, if it can be found.
      */
-    search<TCommandClass extends ICommandClass<any, any>>(name: string): Promise<TCommandClass | undefined>;
+    search(name: string): Promise<ICommandClass | undefined>;
 }
 
 /**
@@ -50,8 +50,8 @@ export class CommandSearcher implements ICommandSearcher {
      * @type TCommandClass   Type of the command.
      * @returns A Promise for the Command sub-class, if it can be found.
      */
-    public async search<TCommandClass extends ICommandClass<any, any>>(
-        name: string
+    public async search<TCommandClass extends ICommandClass>(
+        name: string,
     ): Promise<TCommandClass | undefined> {
         const camelCaseName: string = this.nameTransformer.toCamelCase(name);
 

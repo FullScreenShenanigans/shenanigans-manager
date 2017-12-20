@@ -20,7 +20,7 @@ export class Sanitizer {
         "optional",
         "Cloning into",
         "Skipping failed optional dependency",
-        "WARN"
+        "WARN",
     ];
 
     /**

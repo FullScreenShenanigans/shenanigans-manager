@@ -25,7 +25,7 @@ export class Exec extends Command<IExecArgs, void> {
      *
      * @returns A Promise for running the command.
      */
-    public async execute(): Promise<any> {
+    public async execute(): Promise<void> {
         this.ensureArgsExist("exec", "repository");
 
         await new Shell(this.logger)
