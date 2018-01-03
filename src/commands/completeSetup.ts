@@ -2,9 +2,10 @@ import chalk from "chalk";
 import * as path from "path";
 
 import { buildOrder } from "package-build-order";
-import { ensureArgsExist, ICommandArgs } from "../command";
+import { defaultPathArgs, ICommandArgs } from "../command";
 import { IRuntime } from "../runtime";
-import { ensurePathExists, resolvePackagePaths } from "../utils";
+import { ensurePathExists } from "../utils/files";
+import { resolvePackagePaths } from "../utils/packages";
 import { CloneRepository } from "./cloneRepository";
 import { CompleteBuild } from "./completeBuild";
 import { Exec } from "./exec";
@@ -46,7 +47,7 @@ const parseForks = (forks: string | string[]): { [i: string]: string } => {
  * Clones, links, installs, and builds all repositories locally.
  */
 export const CompleteSetup = async (runtime: IRuntime, args: ICompleteRepositoryArgs) => {
-    ensureArgsExist(args, "directory");
+    defaultPathArgs(args, "directory");
     await ensurePathExists(args.directory);
 
     const logTitle = (message: string): void => {

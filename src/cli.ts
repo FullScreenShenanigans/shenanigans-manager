@@ -8,6 +8,7 @@ import { ConsoleLogger } from "./loggers/consoleLogger";
 import { NameTransformer } from "./nameTransformer";
 import { Runner } from "./runner";
 import { settings } from "./settings";
+import { getCommandArgsType, getSourceFile } from "./utils/ast";
 
 const startTime: moment.Moment = moment();
 
@@ -21,6 +22,8 @@ const args = {
 };
 
 const main = async (): Promise<void> => {
+
+
     const runner: Runner = new Runner(
         new CommandSearcher(
             [path.join(__dirname, "commands")],

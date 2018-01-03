@@ -5,7 +5,7 @@ import * as path from "path";
 
 import { defaultPathArgs, IRepositoryCommandArgs } from "../command";
 import { IRuntime } from "../runtime";
-import { parseFileJson } from "../utils";
+import { parseFileJson } from "../utils/files";
 import { EnsureRepositoryExists } from "./ensureRepositoryExists";
 
 const mergeOnPackageTemplate = (target: IShenanigansPackage, source: Partial<IShenanigansPackage>) => {

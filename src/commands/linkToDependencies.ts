@@ -1,13 +1,13 @@
-import { ensureArgsExist, IRepositoryCommandArgs } from "../command";
+import { defaultPathArgs, IRepositoryCommandArgs } from "../command";
 import { IRuntime } from "../runtime";
 import { Shell } from "../shell";
-import { getDependencies } from "../utils";
+import { getDependencies } from "../utils/files";
 
 /**
  * Links a repository to its local dependencies.
  */
 export const LinkToDependencies = async (runtime: IRuntime, args: IRepositoryCommandArgs) => {
-    ensureArgsExist(args, "directory", "repository");
+    defaultPathArgs(args, "directory", "repository");
 
     const shell: Shell = new Shell(runtime.logger)
         .setCwd(args.directory, args.repository);

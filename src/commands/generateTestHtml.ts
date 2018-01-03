@@ -4,7 +4,7 @@ import * as path from "path";
 
 import { defaultPathArgs, IRepositoryCommandArgs } from "../command";
 import { IRuntime } from "../runtime";
-import { globAsync, parseFileJson } from "../utils";
+import { globAsync, parseFileJson } from "../utils/files";
 import { EnsureRepositoryExists } from "./ensureRepositoryExists";
 
 /**

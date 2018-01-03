@@ -3,7 +3,7 @@ import { buildOrder } from "package-build-order";
 
 import { ICommandArgs } from "../command";
 import { IRuntime } from "../runtime";
-import { resolvePackagePaths } from "../utils";
+import { resolvePackagePaths } from "../utils/packages";
 import { Exec, IExecArgs } from "./exec";
 
 /**

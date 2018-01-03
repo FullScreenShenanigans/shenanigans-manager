@@ -33,7 +33,7 @@
     "mz": "^2.7.0",
     "package-build-order": "^0.2.4",
     "tslint": "5.8.0",
-    "tsutils": "^2.14.0",
+    "tsutils": "^2.15.0",
     "typescript": "^2.6.2"
   },
   "devDependencies": {

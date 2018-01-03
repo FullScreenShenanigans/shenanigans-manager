@@ -8,7 +8,7 @@ import { EnsureRepositoryExists } from "./ensureRepositoryExists";
  */
 export interface ITslintFixArgs extends IRepositoryCommandArgs {
     /**
-     * Whether to linting run without the type checker.
+     * Whether to run linting without the type checker.
      */
     "disable-type-check"?: boolean;
 }

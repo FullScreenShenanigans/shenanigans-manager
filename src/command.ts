@@ -17,7 +17,7 @@ export interface ICommandArgs {
  */
 export interface IRepositoryCommandArgs extends ICommandArgs {
     /**
-     * Name of the repository.
+     * Name of the repository directory to run within.
      */
     repository: string;
 }

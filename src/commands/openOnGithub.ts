@@ -1,16 +1,11 @@
-import { ensureArgsExist } from "../command";
+import { defaultPathArgs, ensureArgsExist, IRepositoryCommandArgs } from "../command";
 import { IRuntime } from "../runtime";
 import { Shell } from "../shell";
 
 /**
  * Arguments for an OpenOnGithub command.
  */
-export interface IOpenOnGithubArgs {
-    /**
-     * Name of the repository.
-     */
-    repository: string;
-
+export interface IOpenOnGithubArgs extends IRepositoryCommandArgs {
     /**
      * Suffix to append to the URL.
      */
@@ -21,7 +16,7 @@ export interface IOpenOnGithubArgs {
  * Opens a repository's page on GitHub.
  */
 export const OpenOnGithub = async (runtime: IRuntime, args: IOpenOnGithubArgs) => {
-    ensureArgsExist(args, "repository");
+    defaultPathArgs(args, "repository");
 
     const url = [
         "https://github.com",

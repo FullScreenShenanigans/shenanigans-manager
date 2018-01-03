@@ -13,7 +13,7 @@ const getNpmInstallNames = (packageJson: IShenanigansPackage, key: "dependencies
 };
 
 /**
- * InstallGlobalDependenciesutes a command in a repository.
+ * Installs a repository's dependencies globally.
  */
 export const InstallGlobalDependencies = async (runtime: IRuntime, args: ICommandArgs) => {
     defaultPathArgs(args, "directory");

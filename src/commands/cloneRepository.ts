@@ -1,4 +1,4 @@
-import { ensureArgsExist, IRepositoryCommandArgs } from "../command";
+import { defaultPathArgs, IRepositoryCommandArgs } from "../command";
 import { IRuntime } from "../runtime";
 import { Shell } from "../shell";
 
@@ -16,7 +16,7 @@ export interface ICloneRepositoryArgs extends IRepositoryCommandArgs {
  * Clones a repository locally.
  */
 export const CloneRepository = async (runtime: IRuntime, args: ICloneRepositoryArgs) => {
-    ensureArgsExist(args, "directory", "repository");
+    defaultPathArgs(args, "directory", "repository");
 
     const shell: Shell = new Shell(runtime.logger);
     const organization = args.fork === undefined
