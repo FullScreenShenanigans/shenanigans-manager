@@ -34,7 +34,7 @@
     "package-build-order": "^0.2.4",
     "rimraf": "^2.6.2",
     "tslint": "5.10.0",
-    "tsutils": "^2.27.1",
+    "tsutils": "^3.0.0",
     "typescript": "^2.8.4"
   },
   "devDependencies": {
