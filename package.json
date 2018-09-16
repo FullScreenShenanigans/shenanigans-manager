@@ -29,7 +29,7 @@
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
     "moment": "^2.22.2",
-    "mustache": "^2.3.1",
+    "mustache": "^3.0.0",
     "mz": "^2.7.0",
     "package-build-order": "^0.2.4",
     "rimraf": "^2.6.2",
