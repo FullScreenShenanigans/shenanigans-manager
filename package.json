@@ -24,7 +24,7 @@
   "homepage": "https://github.com/fullscreenshenanigans/shenanigans-manager#readme",
   "dependencies": {
     "chalk": "^2.4.2",
-    "glob": "^7.1.4",
+    "glob": "7.1.5",
     "json-stable-stringify": "^1.0.1",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
