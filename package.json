@@ -46,7 +46,7 @@
     "@types/mz": "0.0.32",
     "@types/node": "^12.7.5",
     "@types/rimraf": "^2.0.2",
-    "npm-check-updates": "^3.1.23"
+    "npm-check-updates": "^4.1.1"
   },
   "scripts": {
     "src": "npm run src:tsc && npm run src:tslint",
