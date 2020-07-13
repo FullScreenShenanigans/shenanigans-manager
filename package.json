@@ -42,7 +42,7 @@
     "@types/json-stable-stringify": "^1.0.32",
     "@types/minimist": "^1.2.0",
     "@types/mkdirp": "^0.5.2",
-    "@types/mustache": "^0.8.32",
+    "@types/mustache": "^4.0.0",
     "@types/mz": "0.0.32",
     "@types/node": "^12.7.5",
     "@types/rimraf": "^2.0.2",
